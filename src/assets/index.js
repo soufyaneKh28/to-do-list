@@ -1,5 +1,5 @@
 import menu from "./menu.png";
+import menu_black from "./menu-black.png";
 import plus from "./plus.png";
-import edit from "./edit.png";
 
-export { menu, plus };
+export { menu, plus, menu_black };

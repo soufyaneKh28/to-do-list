@@ -1,22 +1,22 @@
-import { menu } from "../assets";
+import { menu, menu_black } from "../assets";
 
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
+import CustomizedSwitches from "./CustomizedSwitches";
 
-const Header = () => {
+const Header = ({ mode, handleMode }) => {
   return (
     <header>
       <nav className=" py-3 px-4 flex justify-between">
-        <TemporaryDrawer />
-        <div className="text-white font-bold text-[20px]">Logo</div>
+        <TemporaryDrawer mode={mode} />
+        <CustomizedSwitches mode={mode} handleMode={handleMode} />
       </nav>
     </header>
   );
 };
 
-export function TemporaryDrawer() {
+export function TemporaryDrawer({ mode }) {
   const [state, setState] = React.useState({
     left: false,
   });
@@ -40,31 +40,33 @@ export function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
       className=" "
     >
-      <div className="bg-main_color w-full h-[100vh] "></div>
+      <div
+        className={`${mode ? "" : ""} bg-main_color w-full h-[100vh] `}
+      ></div>
     </Box>
   );
 
+  let anchor = "left";
+
   return (
-    <div>
-      {["left"].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <div>
-            <img
-              src={menu}
-              alt="menu"
-              className=" w-[35px] cursor-pointer"
-              onClick={toggleDrawer(anchor, true)}
-            />
-          </div>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
+    <div className="flex items-center">
+      <React.Fragment key={anchor}>
+        <div className=" flex items-center">
+          <img
+            src={mode ? menu_black : menu}
+            alt="menu"
+            className=" w-[35px] cursor-pointer"
+            onClick={toggleDrawer(anchor, true)}
+          />
+        </div>
+        <Drawer
+          anchor={anchor}
+          open={state[anchor]}
+          onClose={toggleDrawer(anchor, false)}
+        >
+          {list(anchor)}
+        </Drawer>
+      </React.Fragment>
     </div>
   );
 }

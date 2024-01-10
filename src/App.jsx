@@ -9,23 +9,42 @@ const App = () => {
 
   const [tasksList, setTasksList] = useState(tasks);
 
+
   function handleAddTask() {
     if (!task) return;
     let newTask = {
       task: task,
       id: task,
-      status: true,
+      status: false,
     };
     setTasksList([...tasksList, newTask]);
     setTask("");
   }
+
+  const [mode, setMode] = useState(false);
+  function handleMode() {
+    setMode(!mode);
+  }
   return (
-    <div className="app ">
+    <div
+      className={`app ${
+        mode ? "bg-slate-400" : " bg-main_color"
+      } transition-all`}
+    >
       <div className=" max-w-[700px] mx-auto">
-        <Header />
-        <AddTask task={task} setTask={setTask} handleAddTask={handleAddTask} />
+        <Header mode={mode} handleMode={handleMode} />
+        <AddTask
+          task={task}
+          setTask={setTask}
+          mode={mode}
+          handleAddTask={handleAddTask}
+        />
         <div className="w-[95%] my-3 mx-auto h-[1px] bg-slate-600"></div>
-        <TasksList tasksList={tasksList} />
+        <TasksList
+          tasksList={tasksList}
+          mode={mode}
+          handleSetTask={setTasksList}
+        />
         <Completed />
       </div>
     </div>

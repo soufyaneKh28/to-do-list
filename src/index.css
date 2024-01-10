@@ -75,6 +75,6 @@ button:focus-visible {
 }
 
 .app {
-  background-color: var(--main-color);
+  
   width: 100%;
 }

@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { plus } from "../assets";
 
-const AddTask = ({ task, setTask, handleAddTask }) => {
+const AddTask = ({ task, setTask, mode, handleAddTask }) => {
   return (
     <div className="my-2">
       <div className=" px-4 relative">
         <input
           type="text"
           value={task}
-          className=" w-full py-3 rounded-full text-white px-4 bg-main_dark"
+          className={` w-full py-3 rounded-full text-white px-4 ${
+            mode ? "bg-white" : "bg-main_dark"
+          }`}
           placeholder="Add Item"
           onChange={(e) => setTask(e.target.value)}
         />
