@@ -9,9 +9,9 @@ const AddTask = ({ task, setTask, mode, handleAddTask }) => {
         <input
           type="text"
           value={task}
-          className={` w-full py-3 rounded-full text-white px-4 ${
-            mode ? "bg-white" : "bg-main_dark"
-          }`}
+          className={` w-full py-3 rounded-full ${
+            mode ? "text-gray-900" : "text-white"
+          }  px-4 ${mode ? " bg-gray-300" : "bg-main_dark"}`}
           placeholder="Add Item"
           onChange={(e) => setTask(e.target.value)}
         />

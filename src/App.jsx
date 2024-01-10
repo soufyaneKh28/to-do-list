@@ -27,9 +27,7 @@ const App = () => {
   }
   return (
     <div
-      className={`app ${
-        mode ? "bg-slate-400" : " bg-main_color"
-      } transition-all`}
+      className={`app ${mode ? "bg-white" : " bg-main_color"} transition-all`}
     >
       <div className=" max-w-[700px] mx-auto">
         <Header mode={mode} handleMode={handleMode} />
@@ -45,7 +43,7 @@ const App = () => {
           mode={mode}
           handleSetTask={setTasksList}
         />
-        <Completed />
+        <Completed mode={mode} />
       </div>
     </div>
   );

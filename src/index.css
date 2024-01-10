@@ -78,3 +78,7 @@ button:focus-visible {
   
   width: 100%;
 }
+
+.box-shadow {
+  box-shadow: 0px 1px 3px 0 #3d3d3d
+}

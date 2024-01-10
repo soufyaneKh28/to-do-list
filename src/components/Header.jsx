@@ -41,7 +41,9 @@ export function TemporaryDrawer({ mode }) {
       className=" "
     >
       <div
-        className={`${mode ? "" : ""} bg-main_color w-full h-[100vh] `}
+        className={`${
+          mode ? " bg-white" : " bg-main_dark"
+        } bg-main_color w-full h-[100vh] `}
       ></div>
     </Box>
   );
