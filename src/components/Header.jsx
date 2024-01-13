@@ -1,5 +1,5 @@
 import { menu, menu_black } from "../assets";
-
+import { links } from "../constants";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -44,7 +44,17 @@ export function TemporaryDrawer({ mode }) {
         className={`${
           mode ? " bg-white" : " bg-main_dark"
         } bg-main_color w-full h-[100vh] `}
-      ></div>
+      >
+        <div>
+          <ul className="pt-10">
+            {links.map((link) => (
+              <li key={link.id} className=" text-white px-2 py-3" onClick={""}>
+                {link.link}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </Box>
   );
 
