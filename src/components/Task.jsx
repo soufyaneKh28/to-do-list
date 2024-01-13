@@ -14,7 +14,7 @@ const Task = ({
 
   function changeTasksStatus() {
     handlesetCompletedTasks(() => [...CompletedTasks, task]);
-    handleSetTask(() => tasksList.filter((tas) => tas.task !== task.id));
+    handleDeleteTask();
   }
 
   // function updateStatus(task) {

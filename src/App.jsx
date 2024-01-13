@@ -19,7 +19,7 @@ const App = () => {
   const [task, setTask] = useState("");
 
   const [tasksList, setTasksList] = useState([]);
-  const [CompletedTasks, setCompletedTasks] = useState(tasks);
+  const [CompletedTasks, setCompletedTasks] = useState([]);
 
   function handleAddTask() {
     if (!task) return;
