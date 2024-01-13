@@ -3,7 +3,7 @@ import Task from "./Task";
 
 const TasksList = ({ mode, tasksList, handleSetTask }) => {
   return (
-    <div className="mx-5 my-3 min-h-[250px]">
+    <div className="mx-5 pt-5 min-h-[300px]">
       <div className=" text-gray-300 my-2">To Do</div>
 
       {tasksList.length === 0 ? (
@@ -21,15 +21,17 @@ const TasksList = ({ mode, tasksList, handleSetTask }) => {
           </h1>
         </div>
       ) : (
-        tasksList.map((task) => (
-          <Task
-            key={task.task}
-            task={task}
-            tasksList={tasksList}
-            handleSetTask={handleSetTask}
-            mode={mode}
-          />
-        ))
+        tasksList
+          .filter((task) => !task.status == true)
+          .map((task) => (
+            <Task
+              key={task.task}
+              task={task}
+              tasksList={tasksList}
+              handleSetTask={handleSetTask}
+              mode={mode}
+            />
+          ))
       )}
     </div>
   );

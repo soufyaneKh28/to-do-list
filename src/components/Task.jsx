@@ -4,6 +4,15 @@ const Task = ({ mode, task, tasksList, handleSetTask }) => {
   function handleDeleteTask() {
     handleSetTask(() => tasksList.filter((tas) => tas.task !== task.id));
   }
+
+  // function updateStatus(task) {
+  //   handleSetTask(() =>
+  //     tasksList.map((tas) =>
+  //       tas.id === task.id ? { ...tas, status: !task.status } : tas
+  //     )
+  //   );
+  // }
+
   return (
     <div
       key={task.task}

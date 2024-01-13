@@ -9,7 +9,6 @@ const App = () => {
 
   const [tasksList, setTasksList] = useState(tasks);
 
-
   function handleAddTask() {
     if (!task) return;
     let newTask = {
@@ -25,9 +24,12 @@ const App = () => {
   function handleMode() {
     setMode(!mode);
   }
+
   return (
     <div
-      className={`app ${mode ? "bg-white" : " bg-main_color"} transition-all`}
+      className={`app h-full min-h-[100vh] ${
+        mode ? "bg-white" : " bg-main_color"
+      } transition-all`}
     >
       <div className=" max-w-[700px] mx-auto">
         <Header mode={mode} handleMode={handleMode} />
@@ -43,7 +45,11 @@ const App = () => {
           mode={mode}
           handleSetTask={setTasksList}
         />
-        <Completed mode={mode} />
+        <Completed
+          mode={mode}
+          tasksList={tasksList}
+          handleSetTask={setTasksList}
+        />
       </div>
     </div>
   );
