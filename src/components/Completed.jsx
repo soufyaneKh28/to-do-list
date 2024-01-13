@@ -1,12 +1,19 @@
 import React from "react";
-import Task from "./Task";
+import TaskCompleted from "./TaskCompleted";
 import { completed_dark, completed_light } from "../assets";
-const Completed = ({ mode, tasksList, handleSetTask }) => {
+const Completed = ({
+  mode,
+  tasksList,
+  handleSetTask,
+  CompletedTasks,
+  handlesetCompletedTasks,
+}) => {
+  function updateTask() {}
   return (
     <div className="mx-5 py-5 min-h-[300px]">
       <div className=" text-gray-300 my-2">Completed</div>
 
-      {tasksList.length === 0 ? (
+      {CompletedTasks.length === 0 ? (
         <div className="flex flex-col items-center">
           <div className=" w-[200px]">
             <img src={mode ? completed_light : completed_dark} alt="" />
@@ -21,17 +28,17 @@ const Completed = ({ mode, tasksList, handleSetTask }) => {
           </h1>
         </div>
       ) : (
-        tasksList
-          .filter((task) => task.status == true)
-          .map((task) => (
-            <Task
-              key={task.task}
-              task={task}
-              tasksList={tasksList}
-              handleSetTask={handleSetTask}
-              mode={mode}
-            />
-          ))
+        CompletedTasks.map((task) => (
+          <TaskCompleted
+            key={task.task}
+            task={task}
+            tasksList={tasksList}
+            handleSetTask={handleSetTask}
+            mode={mode}
+            CompletedTasks={CompletedTasks}
+            handlesetCompletedTasks={handlesetCompletedTasks}
+          />
+        ))
       )}
     </div>
   );

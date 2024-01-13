@@ -1,7 +1,13 @@
 import { character_dark, character_light } from "../assets";
 import Task from "./Task";
 
-const TasksList = ({ mode, tasksList, handleSetTask }) => {
+const TasksList = ({
+  mode,
+  tasksList,
+  handleSetTask,
+  CompletedTasks,
+  handlesetCompletedTasks,
+}) => {
   return (
     <div className="mx-5 pt-5 min-h-[300px]">
       <div className=" text-gray-300 my-2">To Do</div>
@@ -30,6 +36,8 @@ const TasksList = ({ mode, tasksList, handleSetTask }) => {
               tasksList={tasksList}
               handleSetTask={handleSetTask}
               mode={mode}
+              CompletedTasks={CompletedTasks}
+              handlesetCompletedTasks={handlesetCompletedTasks}
             />
           ))
       )}

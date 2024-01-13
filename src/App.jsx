@@ -4,10 +4,22 @@ import PropTypes from "prop-types";
 import { AddTask, Completed, Header, TasksList } from "./components";
 import { useState } from "react";
 const App = () => {
-  const tasks = [];
+  const tasks = [
+    {
+      task: "qqqq",
+      id: "qqqq",
+      status: true,
+    },
+    {
+      task: "aqwdfe",
+      id: "aqwdfe",
+      status: true,
+    },
+  ];
   const [task, setTask] = useState("");
 
-  const [tasksList, setTasksList] = useState(tasks);
+  const [tasksList, setTasksList] = useState([]);
+  const [CompletedTasks, setCompletedTasks] = useState(tasks);
 
   function handleAddTask() {
     if (!task) return;
@@ -44,11 +56,15 @@ const App = () => {
           tasksList={tasksList}
           mode={mode}
           handleSetTask={setTasksList}
+          CompletedTasks={CompletedTasks}
+          handlesetCompletedTasks={setCompletedTasks}
         />
         <Completed
           mode={mode}
           tasksList={tasksList}
           handleSetTask={setTasksList}
+          CompletedTasks={CompletedTasks}
+          handlesetCompletedTasks={setCompletedTasks}
         />
       </div>
     </div>
