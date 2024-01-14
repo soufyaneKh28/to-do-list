@@ -6,20 +6,9 @@ import { useState } from "react";
 
 
 const App = () => {
-  const tasks = [
-    {
-      task: "qqqq",
-      id: "qqqq",
-      status: true,
-    },
-    {
-      task: "aqwdfe",
-      id: "aqwdfe",
-      status: true,
-    },
-  ];
-  const [task, setTask] = useState("");
 
+  const [task, setTask] = useState("");
+  const [display, setDisplay] = useState("All");
   const [tasksList, setTasksList] = useState([]);
   const [CompletedTasks, setCompletedTasks] = useState([]);
 
@@ -46,7 +35,11 @@ const App = () => {
       } transition-all`}
     >
       <div className=" max-w-[700px] mx-auto">
-        <Header mode={mode} handleMode={handleMode} />
+        <Header
+          mode={mode}
+          handleMode={handleMode}
+          handleSetDisplay={setDisplay}
+        />
         <AddTask
           task={task}
           setTask={setTask}
@@ -54,20 +47,42 @@ const App = () => {
           handleAddTask={handleAddTask}
         />
         <div className="w-[95%] my-3 mx-auto h-[1px] bg-slate-600"></div>
-        <TasksList
-          tasksList={tasksList}
-          mode={mode}
-          handleSetTask={setTasksList}
-          CompletedTasks={CompletedTasks}
-          handlesetCompletedTasks={setCompletedTasks}
-        />
-        <Completed
-          mode={mode}
-          tasksList={tasksList}
-          handleSetTask={setTasksList}
-          CompletedTasks={CompletedTasks}
-          handlesetCompletedTasks={setCompletedTasks}
-        />
+        {display == "All" && (
+          <>
+            <TasksList
+              tasksList={tasksList}
+              mode={mode}
+              handleSetTask={setTasksList}
+              CompletedTasks={CompletedTasks}
+              handlesetCompletedTasks={setCompletedTasks}
+            />
+            <Completed
+              mode={mode}
+              tasksList={tasksList}
+              handleSetTask={setTasksList}
+              CompletedTasks={CompletedTasks}
+              handlesetCompletedTasks={setCompletedTasks}
+            />
+          </>
+        )}
+        {display == "Not" && (
+          <TasksList
+            tasksList={tasksList}
+            mode={mode}
+            handleSetTask={setTasksList}
+            CompletedTasks={CompletedTasks}
+            handlesetCompletedTasks={setCompletedTasks}
+          />
+        )}
+        {display == "Completed" && (
+          <Completed
+            mode={mode}
+            tasksList={tasksList}
+            handleSetTask={setTasksList}
+            CompletedTasks={CompletedTasks}
+            handlesetCompletedTasks={setCompletedTasks}
+          />
+        )}
       </div>
     </div>
   );

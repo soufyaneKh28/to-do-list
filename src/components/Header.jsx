@@ -1,25 +1,49 @@
 import { menu, menu_black } from "../assets";
-import { links } from "../constants";
+
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import CustomizedSwitches from "./CustomizedSwitches";
 
-const Header = ({ mode, handleMode }) => {
+const Header = ({ mode, handleMode, handleSetDisplay }) => {
   return (
     <header>
       <nav className=" py-3 px-4 flex justify-between">
-        <TemporaryDrawer mode={mode} />
+        <TemporaryDrawer mode={mode} handleSetDisplay={handleSetDisplay} />
         <CustomizedSwitches mode={mode} handleMode={handleMode} />
       </nav>
     </header>
   );
 };
 
-export function TemporaryDrawer({ mode }) {
+export function TemporaryDrawer({ mode, handleSetDisplay }) {
   const [state, setState] = React.useState({
     left: false,
   });
+
+  const links = [
+    {
+      link: "All",
+      id: "All",
+      Display() {
+        handleSetDisplay(() => "All");
+      },
+    },
+    {
+      link: "Not Completed",
+      id: "notCompleted",
+      Display() {
+        handleSetDisplay("Not");
+      },
+    },
+    {
+      link: "Completed",
+      id: "Completed",
+      Display() {
+        handleSetDisplay(() => "Completed");
+      },
+    },
+  ];
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -39,6 +63,7 @@ export function TemporaryDrawer({ mode }) {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
       className=" "
+      handleSetDisplay={handleSetDisplay}
     >
       <div
         className={`${
@@ -48,7 +73,11 @@ export function TemporaryDrawer({ mode }) {
         <div>
           <ul className="pt-10">
             {links.map((link) => (
-              <li key={link.id} className=" text-white px-2 py-3" onClick={""}>
+              <li
+                key={link.id}
+                className=" text-white px-2 py-3 cursor-pointer"
+                onClick={link.Display}
+              >
                 {link.link}
               </li>
             ))}
