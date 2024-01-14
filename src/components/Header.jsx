@@ -75,7 +75,9 @@ export function TemporaryDrawer({ mode, handleSetDisplay }) {
             {links.map((link) => (
               <li
                 key={link.id}
-                className=" text-white px-2 py-3 cursor-pointer"
+                className={`  px-2 py-3 cursor-pointer hover:bg-red-500 transition-colors ${
+                  mode ? "text-black" : "text-white"
+                }`}
                 onClick={link.Display}
               >
                 {link.link}
