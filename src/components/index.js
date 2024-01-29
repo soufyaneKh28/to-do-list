@@ -5,6 +5,7 @@ import Task from "./Task";
 import TasksList from "./TasksList";
 import CustomizedSwitches from "./CustomizedSwitches";
 import TaskCompleted from "./TaskCompleted";
+import EditModal from "./EditModal";
 
 export {
   AddTask,
@@ -14,4 +15,5 @@ export {
   TasksList,
   CustomizedSwitches,
   TaskCompleted,
+  EditModal,
 };

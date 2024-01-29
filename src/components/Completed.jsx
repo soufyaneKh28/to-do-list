@@ -24,7 +24,7 @@ const Completed = ({
               mode ? "text-black" : "text-white"
             }`}
           >
-            Let&apos;s Add New Tasks :)
+            Complete Tasks :)
           </h1>
         </div>
       ) : (

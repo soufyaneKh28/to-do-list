@@ -5,8 +5,8 @@ import { AddTask, Completed, Header, TasksList } from "./components";
 import { useState } from "react";
 
 
-const App = () => {
 
+const App = () => {
   const [task, setTask] = useState("");
   const [display, setDisplay] = useState("All");
   const [tasksList, setTasksList] = useState([]);
