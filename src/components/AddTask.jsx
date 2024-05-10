@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { plus } from "../assets";
 
 const AddTask = ({ task, setTask, mode, handleAddTask }) => {
+  useEffect(
+    function () {
+      document.addEventListener("keydown", function (e) {
+        if (e.code === "Enter") {
+          handleAddTask();
+        }
+      });
+    },
+    [handleAddTask]
+  );
+
   return (
     <div className="my-2">
       <div className=" px-4 relative">
