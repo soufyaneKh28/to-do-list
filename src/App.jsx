@@ -2,9 +2,7 @@ import "./index.css";
 import PropTypes from "prop-types";
 
 import { AddTask, Completed, Header, TasksList } from "./components";
-import { useState } from "react";
-
-
+import { useEffect, useState } from "react";
 
 const App = () => {
   const [task, setTask] = useState("");
@@ -27,6 +25,16 @@ const App = () => {
   function handleMode() {
     setMode(!mode);
   }
+
+  useEffect(() => {
+    async function getTodos() {
+      const res = await fetch("http://localhost:5000/api/todos");
+      const todos = await res.json();
+
+      console.log(todos);
+    }
+    getTodos();
+  }, []);
 
   return (
     <div

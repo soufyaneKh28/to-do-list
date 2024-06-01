@@ -1,6 +1,7 @@
 {
   "name": "to-do-list",
   "private": true,
+  "proxy": "http://localhoast:5000",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
