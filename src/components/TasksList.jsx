@@ -7,6 +7,7 @@ const TasksList = ({
   handleSetTask,
   CompletedTasks,
   handlesetCompletedTasks,
+  allTasks,
 }) => {
   return (
     <div className="mx-5 pt-5 min-h-[300px]">
@@ -27,17 +28,19 @@ const TasksList = ({
           </h1>
         </div>
       ) : (
-        tasksList.map((task) => (
-          <Task
-            key={task.task}
-            task={task}
-            tasksList={tasksList}
-            handleSetTask={handleSetTask}
-            mode={mode}
-            CompletedTasks={CompletedTasks}
-            handlesetCompletedTasks={handlesetCompletedTasks}
-          />
-        ))
+        tasksList
+          .filter((task) => task.status === false)
+          .map((task) => (
+            <Task
+              key={task._id}
+              task={task}
+              tasksList={tasksList}
+              handleSetTask={handleSetTask}
+              mode={mode}
+              CompletedTasks={CompletedTasks}
+              handlesetCompletedTasks={handlesetCompletedTasks}
+            />
+          ))
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import "./index.css";
 import PropTypes from "prop-types";
-
+import { addToDo, getTodos } from "./handleApi.js";
 import { AddTask, Completed, Header, TasksList } from "./components";
 import { useEffect, useState } from "react";
 
@@ -10,14 +10,26 @@ const App = () => {
   const [tasksList, setTasksList] = useState([]);
   const [CompletedTasks, setCompletedTasks] = useState([]);
 
-  function handleAddTask() {
+  useEffect(
+    function () {
+      setCompletedTasks(tasksList.filter((task) => task.status));
+    },
+    [tasksList]
+  );
+
+  const [newTask, setNewTask] = useState();
+  async function handleAddTask() {
     if (!task) return;
-    let newTask = {
+    let newTask2 = {
       task: task,
-      id: task,
+
       status: false,
     };
-    setTasksList([...tasksList, newTask]);
+    //  setTasksList([...tasksList, newTask]);
+
+    addToDo(newTask2);
+    setNewTask(newTask2);
+    // getTodos(tasksList, setTasksList);
     setTask("");
   }
 
@@ -27,14 +39,35 @@ const App = () => {
   }
 
   useEffect(() => {
-    async function getTodos() {
-      const res = await fetch("http://localhost:5000/api/todos");
-      const todos = await res.json();
-
-      console.log(todos);
-    }
-    getTodos();
+    getTodos(setTasksList);
   }, []);
+
+  useEffect(() => {
+    getTodos(setTasksList);
+  }, [handleAddTask]);
+
+  const handleDeleteRequest = async (task) => {
+    try {
+      const response = await fetch("https://api.example.com/data/1", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: taskId }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+      setData(result); // Store the response data in state
+    } catch (error) {
+      setError(error); // Store any error in state
+    } finally {
+      setLoading(false); // Set loading to false after the request
+    }
+  };
 
   return (
     <div
